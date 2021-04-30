@@ -2,6 +2,22 @@ package ladder;
 
 public class Row {
 
+	enum Direction {
+		LEFT(-1),
+		CENTER(0),
+		RIGHT(1);
+
+		private int no;
+
+		private Direction(int no) {
+			this.no = no;
+		}
+		
+		public int getNo() {
+			return no;
+		}
+	}
+	
 	int[] persons;
 	
 	Row(int noOfPersons) {
@@ -9,8 +25,8 @@ public class Row {
 	}
 	
 	void drawLine(int startPosition) {
-		persons[startPosition] = 1;
-		persons[startPosition + 1] = -1;
+		persons[startPosition] = Direction.RIGHT.getNo();
+		persons[startPosition + 1] = Direction.LEFT.getNo();
 	}
 	
 	int move(int nthOfPerson) {
@@ -26,10 +42,10 @@ public class Row {
 	}
 
 	private boolean isRightDirection(int nthOfPerson) {
-		return persons[nthOfPerson] == 1;
+		return persons[nthOfPerson] == Direction.RIGHT.getNo();
 	}
 
 	private boolean isNoLine(int nthOfPerson) {
-		return persons[nthOfPerson] == 0;
+		return persons[nthOfPerson] == Direction.CENTER.getNo();
 	}
 }
