@@ -21,15 +21,23 @@ class Node {
 	}
 	
 	Marker move(Marker marker) {
-		if (this.direction == Direction.RIGHT) {
+		if (isRightDirection()) {
 			return marker.moveRight();
 		}
 		
-		if (this.direction == Direction.LEFT) {
+		if (isLeftDirection()) {
 			return marker.moveLeft();
 		}
 		
 		return marker;
+	}
+
+	boolean isRightDirection() {
+		return this.direction == Direction.RIGHT;
+	}
+	
+	boolean isLeftDirection() {
+		return this.direction == Direction.LEFT;
 	}
 	
 	static Node createCenterNode() {
